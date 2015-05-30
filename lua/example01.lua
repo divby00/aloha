@@ -1,8 +1,4 @@
-#!/usr/bin/lua
-
-Test = {}
-Test.__index = Test
-
-function Test:new(x, y)
-    return setmetatable({x = x, y = y}, Test)
-end
+dofile('lua/test.lua')
+aloha.al_init()
+t = Test:new(10, 20)
+print(t:suma())
