@@ -2,6 +2,7 @@
 #include <lauxlib.h>
 #include <lualib.h>
 #include "al5_modules/system.h"
+#include "al5_modules/configuration.h"
 
 static const luaL_Reg aloha_lib[] = {
     {"init", lua_init},
@@ -15,6 +16,9 @@ static const luaL_Reg aloha_lib[] = {
     {"get_app_name", lua_get_app_name},
     {"get_org_name", lua_get_org_name},
     {"get_system_config", lua_get_system_config},
+    {"create_config", lua_create_config},
+    {"destroy_config", lua_destroy_config},
+    {"load_config_file", lua_load_config_file},
     {"RESOURCES_PATH", NULL},
     {"TEMP_PATH", NULL},
     {"USER_HOME_PATH", NULL},

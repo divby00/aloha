@@ -39,7 +39,8 @@ SOURCES += src/lua-5.3.0/lapi.c\
     src/lua-5.3.0/lvm.c\
     src/lua-5.3.0/lzio.c\
     src/main.c\
-    src/al5_modules/system.c
+    src/al5_modules/system.c \
+    src/al5_modules/configuration.c
 
 OTHER_FILES += \
     lua/test.lua \
@@ -47,4 +48,5 @@ OTHER_FILES += \
 
 HEADERS += \
     src/al5_modules/system.h \
-    src/aloha/defs.h
+    src/aloha/defs.h \
+    src/al5_modules/configuration.h
