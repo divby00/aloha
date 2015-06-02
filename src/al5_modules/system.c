@@ -138,6 +138,6 @@ ALLEGRO_CONFIG* aloha_get_system_config(void) {
 
 EXPORT int lua_get_system_config(lua_State* ls) {
     ALLEGRO_CONFIG* config = aloha_get_system_config();
-    lua_pushlightuserdata(ls, 1);
+    lua_pushlightuserdata(ls, config);
     return 1;
 }
