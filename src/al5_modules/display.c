@@ -316,4 +316,120 @@ EXPORT int lua_acknowledge_resize(lua_State* ls) {
     return 1;
 }
 
+void aloha_get_window_position(ALLEGRO_DISPLAY* display, int* x, int* y) {
+    al_get_window_position(display, x, y);
+}
 
+EXPORT int lua_get_window_position(lua_State* ls) {
+    int x, y = 0;
+    ALLEGRO_DISPLAY* display = NULL;
+
+    if (lua_islightuserdata(ls, 1)) {
+        display = lua_touserdata(ls, 1);
+        aloha_get_window_position(display, &x, &y);
+    }
+    lua_pushnumber(ls, x);
+    lua_pushnumber(ls, y);
+    return 2;
+}
+
+void aloha_set_window_position(ALLEGRO_DISPLAY* display, int x, int y) {
+    al_set_window_position(display, x, y);
+}
+
+EXPORT int lua_set_window_position(lua_State* ls) {
+    ALLEGRO_DISPLAY* display = NULL;
+    int x, y = 0;
+    if (lua_islightuserdata(ls, 1) && lua_isnumber(ls, 2) && lua_isnumber(ls, 3)) {
+        display = lua_touserdata(ls, 1);
+        x = lua_tonumber(ls, 2);
+        y = lua_tonumber(ls, 3);
+        aloha_set_window_position(display, x, y);
+    }
+    return 0;
+}
+
+unsigned char aloha_get_window_constraints(ALLEGRO_DISPLAY* display, int* min_w, int* min_h, int* max_w, int* max_h) {
+    unsigned char result = 0;
+    result = al_get_window_constraints(display, min_w, min_h, max_w, max_h);
+    return result;
+}
+
+EXPORT int lua_get_window_constraints(lua_State* ls) {
+    ALLEGRO_DISPLAY* display = NULL;
+    int min_w, min_h, max_w, max_h = 0;
+
+    if (lua_islightuserdata(ls, 1)) {
+        display = lua_touserdata(ls, 1);
+        aloha_get_window_constraints(display, &min_w, &min_h, &max_w, &max_h);
+    }
+    lua_pushnumber(ls, min_w);
+    lua_pushnumber(ls, min_h);
+    lua_pushnumber(ls, max_w);
+    lua_pushnumber(ls, max_h);
+    return 4;
+}
+
+unsigned char aloha_set_window_constraints(ALLEGRO_DISPLAY* display, int min_w, int min_h, int max_w, int max_h) {
+    unsigned char result = 0;
+    result = al_set_window_constraints(display, min_w, min_h, max_w, max_h);
+    return result;
+}
+
+EXPORT int lua_set_window_constraints(lua_State* ls) {
+    ALLEGRO_DISPLAY* display = NULL;
+    int min_w, min_h, max_w, max_h = 0;
+    unsigned char result = 0;
+
+    if (lua_islightuserdata(ls, 1) && lua_isnumber(ls, 2) && lua_isnumber(ls, 3) && lua_isnumber(ls, 4) && lua_isnumber(ls, 5)) {
+        display = lua_touserdata(ls, 1);
+        min_w = lua_tonumber(ls, 2);
+        min_h = lua_tonumber(ls, 3);
+        max_w = lua_tonumber(ls, 4);
+        max_h = lua_tonumber(ls, 5);
+        result = aloha_set_window_constraints(display, min_w, min_h, max_w, max_h);
+    }
+    lua_pushnumber(ls, result);
+    return 1;
+}
+
+int aloha_get_display_flags(ALLEGRO_DISPLAY* display) {
+    int flags = 0;
+    flags = al_get_display_flags(display);
+    return flags;
+}
+
+EXPORT int lua_get_display_flags(lua_State* ls) {
+    int flags = 0;
+    ALLEGRO_DISPLAY* display = NULL;
+
+    if (lua_islightuserdata(ls, 1)) {
+        display = lua_touserdata(ls, 1);
+        flags = aloha_get_display_flags(display);
+    }
+    lua_pushnumber(ls, flags);
+    return 1;
+}
+
+unsigned char aloha_set_display_flag(ALLEGRO_DISPLAY* display, int flag, unsigned char onoff) {
+    unsigned char result = 0;
+    result = al_set_display_flag(display, flag, onoff);
+    return result;
+
+}
+
+EXPORT int lua_set_display_flag(lua_State* ls) {
+    ALLEGRO_DISPLAY* display = NULL;
+    int flag = 0;
+    unsigned char onoff = 0;
+    unsigned char result = 0;
+
+    if (lua_islightuserdata(ls, 1) && lua_isnumber(ls, 2) && lua_isnumber(ls, 3)) {
+        display = lua_touserdata(ls, 1);
+        flag = lua_tonumber(ls, 2);
+        onoff = lua_tonumber(ls, 3);
+        result = aloha_set_display_flag(display, flag, onoff);
+    }
+    lua_pushnumber(ls, result);
+    return 1;
+}

@@ -45,6 +45,19 @@ unsigned char aloha_resize_display(ALLEGRO_DISPLAY* display, int width, int heig
 EXPORT int lua_resize_display(lua_State* ls);
 unsigned char aloha_acknowledge_resize(ALLEGRO_DISPLAY* display);
 EXPORT int lua_acknowledge_resize(lua_State* ls);
+void aloha_get_window_position(ALLEGRO_DISPLAY* display, int* x, int* y);
+EXPORT int lua_get_window_position(lua_State* ls);
+void aloha_set_window_position(ALLEGRO_DISPLAY* display, int x, int y);
+EXPORT int lua_set_window_position(lua_State* ls);
+unsigned char aloha_get_window_constraints(ALLEGRO_DISPLAY* display, int* min_w, int* min_h, int* max_w, int* max_h);
+EXPORT int lua_get_window_constraints(lua_State* ls);
+unsigned char aloha_set_window_constraints(ALLEGRO_DISPLAY* display, int min_w, int min_h, int max_w, int max_h);
+EXPORT int lua_set_window_constraints(lua_State* ls);
+int aloha_get_display_flags(ALLEGRO_DISPLAY* display);
+EXPORT int lua_get_display_flags(lua_State* ls);
+unsigned char aloha_set_display_flag(ALLEGRO_DISPLAY* display, int flag, unsigned char onoff);
+EXPORT int lua_set_display_flag(lua_State* ls);
+
 
 #endif
 
