@@ -37,6 +37,8 @@ static const luaL_Reg aloha_lib[] = {
     {"destroy_display", lua_destroy_display},
     {"get_new_display_flags", lua_get_new_display_flags},
     {"set_new_display_flags", lua_set_new_display_flags},
+    {"get_new_window_position", lua_get_new_window_position},
+    {"set_new_window_position", lua_set_new_window_position},
     /* Constants from module system */
     {"RESOURCES_PATH", NULL},
     {"TEMP_PATH", NULL},

@@ -18,10 +18,9 @@ void aloha_destroy_config(ALLEGRO_CONFIG* config) {
 
 EXPORT int lua_destroy_config(lua_State* ls) {
     ALLEGRO_CONFIG* config = NULL;
-    fprintf(stdout, "\nEn destroy...");
+
     if (lua_isuserdata(ls, 1)) {
         config = lua_touserdata(ls, 1);
-        fprintf(stdout, "\nConfig");
         aloha_destroy_config(config);
     }
     return 0;
